@@ -1,0 +1,40 @@
+<header class="p-3 bg-dark text-white" th:fragment="header"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-white">Главная</a></li>
+                <li><a href="/timetables" class="nav-link px-2 text-white">Расписание</a></li>
+                <li><a href="/group" class="nav-link px-2 text-white">Группа</a></li>
+                <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin"
+                                                             class="nav-link px-2 text-white">Админ-панель</a></li>
+            </ul>
+            <div class="flex-shrink-0 dropdown" sec:authorize="isAuthenticated()">
+                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser"
+                   data-bs-toggle="dropdown" aria-expanded="false"
+                   th:text="${#authentication.getPrincipal().getUsername()}"></a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
+                    <li>
+                    <li><a th:href="${'/profile?username='+ #authentication.getPrincipal().getUsername()}" class="nav-link px-2 text-white">Расписание</a></li>
+                        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                            <input type="submit" class="dropdown-item" value="Выход"/>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+            <div sec:authorize="isAnonymous()">
+                <a class="btn btn-outline-light me-2" href="/login">Вход</a>
+                <a class="btn btn-warning" href="/register">Регистрация</a>
+            </div>
+        </div>
+    </div>
+</header>
