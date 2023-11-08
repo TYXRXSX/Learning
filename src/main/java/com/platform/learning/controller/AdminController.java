@@ -80,7 +80,7 @@ public class AdminController {
     }
     @GetMapping("/admin/group/{groupId}/add-student")
     public String editGroupStudent(Model model, @PathVariable Long groupId){
-        model.addAttribute("list",userService.findAllByRole(Role.ADMIN));
+        model.addAttribute("list",userService.findAllByRole(Role.USER));
         model.addAttribute("groupId", groupId);
         return "admin/groupcrud/users";
     }
