@@ -149,7 +149,7 @@ public class AdminController {
     }
     @PostMapping("/admin/timetables/edit/accept")
     public String editTimetablesAccept(Model model,@ModelAttribute("group")Timetable timetable){
-        if (timetable.getId()!=0) {
+        if (timetable.getId() != null) {
             timetable.setDisciplines(timetableService.getTimetable(timetable.getId()).getDisciplines());
         }
         timetableService.save(timetable);

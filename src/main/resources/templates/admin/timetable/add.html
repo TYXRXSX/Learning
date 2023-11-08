@@ -20,6 +20,10 @@
 <!--        <input type="date" class="form-control" name="start-time" th:field="*{Name}" id="date" placeholder="Название группы">-->
 <!--        <label for="floatingInput">Название группы</label>-->
         <div class="form-floating">
+            <input type="date" class="form-control" name="start-time" th:field="*{localDate}" id="date" placeholder="Дата выполнения заказа">
+            <label for="floatingInput">Дата</label>
+        </div>
+        <div class="form-floating">
             Группа
             <select th:field="*{studentsGroup}" name="position" id="floatingInput" class="form-control">
                 <option th:each="type : ${Groups}"

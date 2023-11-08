@@ -1,6 +1,7 @@
 package com.platform.learning.dao;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
@@ -22,5 +23,6 @@ public class Timetable {
     @OneToMany
     private List<Discipline> disciplines = new ArrayList<Discipline>();
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate localDate;
 }
