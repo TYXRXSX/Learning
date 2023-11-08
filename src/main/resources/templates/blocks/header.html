@@ -23,7 +23,7 @@
                    th:text="${#authentication.getPrincipal().getUsername()}"></a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" style="">
                     <li>
-                    <li><a th:href="${'/profile?username='+ #authentication.getPrincipal().getUsername()}" class="nav-link px-2 text-white">Расписание</a></li>
+                    <li><a th:href="${'/profile?username='+ #authentication.getPrincipal().getUsername()}" class="nav-link px-2 text-black">Профиль</a></li>
                         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
                             <input type="submit" class="dropdown-item" value="Выход"/>
                         </form>

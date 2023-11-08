@@ -38,4 +38,8 @@ public class TimetableService {
     public void save(Timetable timetable) {
         timetableRepo.save(timetable);
     }
+
+    public void delete(long id) {
+        timetableRepo.deleteById(id);
+    }
 }

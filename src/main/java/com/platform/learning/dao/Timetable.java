@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Timetable {
     private StudentsGroup studentsGroup;
 
     @OneToMany
-    private List<Discipline> disciplines;
+    private List<Discipline> disciplines = new ArrayList<Discipline>();
 
     private LocalDate localDate;
 }

@@ -149,6 +149,9 @@ public class AdminController {
     }
     @PostMapping("/admin/timetables/edit/accept")
     public String editTimetablesAccept(Model model,@ModelAttribute("group")Timetable timetable){
+        if (timetable.getId()!=0) {
+            timetable.setDisciplines(timetableService.getTimetable(timetable.getId()).getDisciplines());
+        }
         timetableService.save(timetable);
         return "redirect:/admin/timetables";
     }
@@ -177,5 +180,11 @@ public class AdminController {
         timetable.getDisciplines().remove(discipline);
         timetableService.save(timetable);
         return "redirect:/admin/timetables/edit?id="+timetableId;
+    }
+
+    @GetMapping("/admin/timetables/delete")
+    public String deleteTimetable(Model model, @RequestParam(name="id", required = true)long id){
+        timetableService.delete(id);
+        return "redirect:/admin/timetables";
     }
 }

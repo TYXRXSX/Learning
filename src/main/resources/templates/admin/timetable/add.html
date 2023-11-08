@@ -41,7 +41,7 @@
             </tr>
             </thead>
             <tbody id="tabletr" >
-            <tr th:each="el : ${Timetable.getDisciplines()}" th:field="*{disciplines}">
+            <tr th:each="el : ${Timetable.getDisciplines()}" th:field="*{disciplines}" th:value="${el.getId()}">
                 <th th:text="${el.getId()}" scope="row"></th>
                 <td th:text="${el.getName()}"></td>
                 <td>

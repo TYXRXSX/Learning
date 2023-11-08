@@ -57,6 +57,16 @@
                                         <p class="mb-0">delete</p>
                                     </a>
                                 </div>
+                                <div sec:authorize="hasAnyAuthority('ADMIN')" th:if="${#authentication.getPrincipal().getUsername()!=User.getUsername()}" class="small d-flex justify-content-start">
+                                    <a th:href="${'/comment/edit/'+User.getUsername()+'/'+el.getId()}" class="d-flex align-items-center me-3">
+                                        <i class="far fa-thumbs-up me-2"></i>
+                                        <p class="mb-0">edit</p>
+                                    </a>
+                                    <a th:href="${'/comment/delete?id='+el.getId()}" class="d-flex align-items-center me-3">
+                                        <i class="far fa-comment-dots me-2"></i>
+                                        <p class="mb-0">delete</p>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                                 <form th:action="@{/comment/user/accept(comm_id=${User.getId()})}" method="post" th:object="${Comment}"
