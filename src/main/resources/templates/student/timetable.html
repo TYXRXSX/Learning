@@ -28,7 +28,7 @@
                     <p class="card-title" th:text="${'Название группы: '+el.getStudentsGroup().getName()}"></p>
                     <p class="card-title" th:text="${'Дата: '+el.getLocalDate()}"></p>
                     <p class="card-title">Дисциплины:</p>
-                    <p th:each="el2 : ${el.getDisciplines()}" class="card-title" th:text="${el2.getName()}"></p>
+                    <a th:href="${'/discipline?id='+el2.getId()}" th:each="el2 : ${el.getDisciplines()}" class="card-title" th:text="${el2.getName()}"></a>
                 </div>
             </div>
         </div>

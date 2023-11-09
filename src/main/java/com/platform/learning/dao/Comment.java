@@ -17,6 +17,9 @@ public class Comment {
     private Timetable timetable;
 
     @ManyToOne
+    private Users creator;
+
+    @ManyToOne
     private Users user;
 
     @ManyToOne
