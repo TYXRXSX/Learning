@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class AdminController {
@@ -80,7 +82,9 @@ public class AdminController {
     }
     @GetMapping("/admin/group/{groupId}/add-student")
     public String editGroupStudent(Model model, @PathVariable Long groupId){
-        model.addAttribute("list",userService.findAllByRole(Role.USER));
+        List<Users> usersList = userService.findAllByRole(Role.USER);
+        usersList.addAll(userService.findAllByRole(Role.TEACHER));
+        model.addAttribute("list",usersList);
         model.addAttribute("groupId", groupId);
         return "admin/groupcrud/users";
     }
@@ -123,7 +127,6 @@ public class AdminController {
         userService.delete(id);
         return "redirect:/admin/users";
     }
-    //, @RequestParam(name="privillege_id", required = true)Long id
     @PostMapping("/admin/users/edit/accept")
     public String editUserAccept(Model model, @ModelAttribute("User") Users user, @ModelAttribute("Address") Address address){
         Address address1 = addressRepo.save(address);
