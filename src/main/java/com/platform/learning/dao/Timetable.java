@@ -20,7 +20,7 @@ public class Timetable {
     @OneToOne
     private StudentsGroup studentsGroup;
 
-    @OneToMany
+    @ManyToMany
     private List<Discipline> disciplines = new ArrayList<Discipline>();
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
